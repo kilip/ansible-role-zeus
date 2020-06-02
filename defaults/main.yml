@@ -1,4 +1,6 @@
 ---
+zeus_docker_gpg_key: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+
 # defaults file for zeus
 zeus_regolith: yes
 zeus_docker: yes
