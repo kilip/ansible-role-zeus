@@ -1,0 +1,14 @@
+- name: apt-repository for regolith
+  apt_repository:
+    repo: ppa:regolith-linux/release
+    state: present
+
+- name: install regolith
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - regolith-desktop
+    - i3xrocks-net-traffic
+    - i3xrocks-cpu-usage
+    - i3xrocks-time

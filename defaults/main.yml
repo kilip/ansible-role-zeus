@@ -1,0 +1,5 @@
+---
+# defaults file for zeus
+zeus_regolith: yes
+zeus_docker: yes
+zeus_php: yes

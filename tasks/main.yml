@@ -1,0 +1,10 @@
+---
+# tasks file for zeus
+- include: regolith.yml
+  when: zeus_regolith
+
+- include: docker.yml
+  when: zeus_docker
+
+- include: php.yml
+  when: zeus_php
