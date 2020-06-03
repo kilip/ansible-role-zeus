@@ -1,9 +1,9 @@
-- name: apt-repository for regolith
+- name: regolith ~> configure apt-repository
   apt_repository:
     repo: ppa:regolith-linux/release
     state: present
 
-- name: install regolith
+- name: regolith ~> start installation
   package:
     name: "{{ item }}"
     state: present
