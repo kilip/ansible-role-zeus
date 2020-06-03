@@ -1,5 +1,25 @@
 ---
+# Used only for Debian/Ubuntu. Switch 'stable' to 'edge' if needed.
+docker_apt_release_channel: stable
+docker_apt_arch: amd64
+docker_apt_repository: "deb [arch={{ docker_apt_arch }}] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} {{ docker_apt_release_channel }}"
+docker_apt_ignore_key_error: true
+docker_apt_gpg_key: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+
 # defaults file for zeus
-zeus_regolith: yes
-zeus_docker: yes
-zeus_php: yes
+regolith: yes
+
+docker: yes
+
+php: yes
+
+gpg: no
+gpg_home: "~"
+gpg_user: "toni"
+gpg_group: "toni"
+gpg_key_id:
+gpg_private_key:
+gpg_passphrase:
+gpg_public_key:
+gpg_temp_dir: "/tmp/gpg"
+gpg_import_key: yes

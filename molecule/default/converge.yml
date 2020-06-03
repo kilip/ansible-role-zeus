@@ -5,3 +5,14 @@
     - name: "Include zeus"
       include_role:
         name: "zeus"
+  vars:
+    #regolith: no
+    #docker: no
+    #php: no
+
+    gpg: yes
+    gpg_home: "/root"
+    gpg_user: root
+    gpg_group: root
+    gpg_key_id: "FC745865826D935D52E089583AF2DB499DD9D2A0"
+    gpg_private_key: "tests/fixtures/gpg.key"

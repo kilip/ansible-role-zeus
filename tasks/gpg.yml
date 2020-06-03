@@ -1,0 +1,37 @@
+---
+- name: gpg ~> ensure temp dir exists
+  file:
+    path: "{{ gpg_temp_dir }}"
+    state: directory
+    mode: 0755
+  changed_when: false
+
+- name: gpg ~> copy gpg keys
+  become: yes
+  become_user: "{{ gpg_user }}"
+  copy:
+    src: "{{ gpg_private_key }}"
+    dest: "{{ gpg_temp_dir }}/private.key"
+    owner: "{{ gpg_user }}"
+    group: "{{ gpg_group }}"
+    mode: 0600
+
+- name: gpg ~> ensure gpg config exists
+  become: yes
+  become_user: "{{ gpg_user }}"
+  command: "gpg --list-keys {{ gpg_key_id }}"
+  register: out
+  failed_when: out.rc > 100
+  changed_when: false
+
+- name: gpg ~> check existing key
+  when: out.rc == 0
+  set_fact:
+    gpg_import_key: no
+  changed_when: false
+
+- name: Import private key
+  become: yes
+  become_user: "{{ gpg_user }}"
+  command: "gpg --import {{ gpg_temp_dir }}/private.key"
+  when: gpg_import_key
