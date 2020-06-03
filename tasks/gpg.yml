@@ -1,9 +1,13 @@
 ---
 - name: gpg ~> ensure temp dir exists
+  become: yes
+  become_user: "{{ gpg_user }}"
   file:
     path: "{{ gpg_temp_dir }}"
     state: directory
     mode: 0755
+    owner: "{{ gpg_user }}"
+    group: "{{ gpg_group }}"
   changed_when: false
 
 - name: gpg ~> copy gpg keys
