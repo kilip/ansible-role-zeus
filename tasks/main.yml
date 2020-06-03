@@ -1,10 +1,12 @@
 ---
-# tasks file for zeus
+- include: gpg.yml
+  when: gpg
+
 - include: regolith.yml
-  when: zeus_regolith
+  when: regolith
 
 - include: docker.yml
-  when: zeus_docker
+  when: docker
 
 - include: php.yml
-  when: zeus_php
+  when: php
