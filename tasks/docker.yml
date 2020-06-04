@@ -54,7 +54,7 @@
 - name: docker ~> add {{ docker_user }} to docker group
   user:
     name: "{{ docker_user }}"
-    group: "{{ docker }}"
+    group: "docker"
     append: yes
 
 - name: docker ~> install docker-compose
