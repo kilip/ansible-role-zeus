@@ -13,6 +13,9 @@
     name:
       - apt-transport-https
       - ca-certificates
+      - curl
+      - gnupg-agent
+      - software-properties-common
     state: present
 
 - name: docker ~> Add Docker apt key.
@@ -39,3 +42,24 @@
     repo: "{{ docker_apt_repository }}"
     state: present
     update_cache: true
+
+- name: docker ~> install docker
+  package:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: present
+
+- name: docker ~> add {{ docker_user }} to docker group
+  user:
+    name: "{{ docker_user }}"
+    group: "{{ docker }}"
+    append: yes
+
+- name: docker ~> install docker-compose
+  get_url:
+    url: https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-$(uname -s)-$(uname -m)"
+    dest: /usr/local/bin/docker-compose
+    mode: "u+x,g+x"
+

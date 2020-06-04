@@ -1,6 +1,19 @@
 ---
+- name: include user task
+  include: user.yml
+
+- name: apt ~> update cache
+  apt:
+    update_cache: true
+    cache_valid_time: 600
+
+- include: util.yml
+
 - include: gpg.yml
   when: gpg
+
+- include: git.yml
+  when: git
 
 - include: regolith.yml
   when: regolith

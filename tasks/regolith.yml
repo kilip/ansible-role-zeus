@@ -2,6 +2,7 @@
   apt_repository:
     repo: ppa:regolith-linux/release
     state: present
+    update_cache: yes
 
 - name: regolith ~> start installation
   package:
