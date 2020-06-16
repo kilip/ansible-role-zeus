@@ -32,10 +32,12 @@
 
 - name: docker ~> Add Docker apt key (alternative for older systems without SNI).
   shell: >
+    set -o pipefail
     curl -sSL {{ docker_apt_gpg_key }} | sudo apt-key add -
   args:
     warn: false
   when: add_repository_key is failed
+  failed_when: false
 
 - name: docker ~> Add Docker repository.
   apt_repository:

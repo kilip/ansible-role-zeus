@@ -42,3 +42,6 @@ phpbrew: yes
 ansible: yes
 
 vbox: yes
+
+nvm: yes
+nvm_version: v0.35.3

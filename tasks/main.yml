@@ -21,6 +21,9 @@
 - include: docker.yml
   when: docker
 
+- include: nvm.yml
+  when: nvm
+
 - include: phpbrew.yml
   when: phpbrew
 

@@ -29,6 +29,8 @@
   become_user: "{{ zeus_user }}"
   command: phpbrew init
   changed_when: false
+  args:
+    creates: "{{ zeus_user }}/.phpbrew"
 
 - name: phpbrew ~> setup bash
   become: yes

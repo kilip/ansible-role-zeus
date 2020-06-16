@@ -6,7 +6,7 @@ driver:
   name: docker
 
 platforms:
-- name: zeus-vm
+- name: ansible-role-zeus
   image: kilip/molecule-ubuntu:20.04
   pre_build_image: true
   command: ${MOLECULE_DOCKER_COMMAND:-""}
@@ -20,7 +20,9 @@ provisioner:
     converge: ${MOLECULE_PLAYBOOK:-converge.yml}
 
 lint: |
+  set -e
   yamllint .
+  ansible-lint
 
 verifier:
   name: testinfra
