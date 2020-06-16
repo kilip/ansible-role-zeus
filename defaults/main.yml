@@ -6,6 +6,7 @@ zeus_util:
   - vim
   - nethogs
   - cockpit
+  - vlc
 
 # Used only for Debian/Ubuntu. Switch 'stable' to 'edge' if needed.
 docker: yes

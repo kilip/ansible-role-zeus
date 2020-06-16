@@ -26,7 +26,7 @@ def test_regolith(host):
 
 
 def test_gpg(host):
-	o = host.run("gpg --list-keys FC745865826D935D52E089583AF2DB499DD9D2A0")
+	o = host.user("toni").run("gpg --list-keys FC745865826D935D52E089583AF2DB499DD9D2A0")
 	assert o.succeeded
 
 
