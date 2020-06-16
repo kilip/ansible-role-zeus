@@ -6,7 +6,7 @@ driver:
   name: docker
 
 platforms:
-- name: instance
+- name: zeus-vm
   image: kilip/molecule-ubuntu:20.04
   pre_build_image: true
   command: ${MOLECULE_DOCKER_COMMAND:-""}
@@ -14,11 +14,10 @@ platforms:
   volumes:
     - /sys/fs/cgroup:/sys/fs/cgroup:ro
 
-
 provisioner:
   name: ansible
-  playbooks:
-    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
+#  playbooks:
+#    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
 
 verifier:
   name: testinfra

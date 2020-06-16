@@ -23,3 +23,6 @@
 
 - include: php.yml
   when: php
+
+- include: phpbrew.yml
+  when: phpbrew

@@ -36,3 +36,6 @@ gpg_import_key: yes
 git: yes
 git_gpg_key: False
 git_global_config: {}
+
+phpbrew: yes
+ansible: yes
