@@ -50,3 +50,8 @@ def test_phpbrew(host):
 
 	assert cmd.succeeded
 
+
+def test_nvm(host):
+	cmd = host.run("su toni -c nvm --version")
+
+	assert cmd.succeeded
