@@ -10,8 +10,14 @@
     - libssl-dev
     - libxml2-dev
     - libxslt-dev
-    - libcurl4
+    - libcurl4-gnutls-dev
+    - zlib1g-dev
+    - libpng-dev
+    - libonig-dev
+    - libzip-dev
     - pkg-config
+    - php-cli
+    - php-bz2
 
 - name: phpbrew => downloading phpbrew
   get_url:

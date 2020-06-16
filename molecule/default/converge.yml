@@ -8,7 +8,7 @@
   vars:
     zeus_user: toni
     zeus_group: toni
-    regolith: no
+    regolith: yes
     #docker: no
     #php: no
     gpg: yes

@@ -19,6 +19,9 @@ provisioner:
 #  playbooks:
 #    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
 
+lint: |
+  yamllint . ansible-lint
+
 verifier:
   name: testinfra
   options:
