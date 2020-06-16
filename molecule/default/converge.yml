@@ -9,13 +9,9 @@
     zeus_user: toni
     zeus_group: toni
     regolith: yes
-    #docker: no
-    #php: no
     gpg: yes
     gpg_key_id: "FC745865826D935D52E089583AF2DB499DD9D2A0"
     gpg_private_key: "tests/fixtures/gpg.key"
-
-    #git_global_config: "tests/fixtures/git.config
     git_global_config:
       user.name: User Name
       user.email: user.email@itstoni.com

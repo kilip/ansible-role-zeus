@@ -23,3 +23,6 @@
 
 - include: phpbrew.yml
   when: phpbrew
+
+- include: virtualbox.yml
+  when: vbox

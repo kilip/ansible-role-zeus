@@ -31,3 +31,10 @@
   command: phpbrew init
   changed_when: false
 
+- name: phpbrew ~> setup bash
+  become: yes
+  become_user: "{{ zeus_user }}"
+  lineinfile:
+    path: "{{ zeus_home }}/.bashrc"
+    regexp: '^source.*\.phpbrew/bashrc'
+    line: "source {{ zeus_home }}/.phpbrew/bashrc"

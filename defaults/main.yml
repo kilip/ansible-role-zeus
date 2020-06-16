@@ -39,3 +39,5 @@ git_global_config: {}
 
 phpbrew: yes
 ansible: yes
+
+vbox: yes

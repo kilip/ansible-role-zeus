@@ -54,7 +54,7 @@
 - name: docker ~> add {{ docker_user }} to docker group
   user:
     name: "{{ docker_user }}"
-    groups: "docker"
+    groups: docker
     append: yes
   changed_when: false
 
@@ -63,4 +63,3 @@
     url: https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64
     dest: /usr/local/bin/docker-compose
     mode: "u+x,g+x"
-

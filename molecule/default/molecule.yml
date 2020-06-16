@@ -16,11 +16,11 @@ platforms:
 
 provisioner:
   name: ansible
-#  playbooks:
-#    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
+  playbooks:
+    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
 
 lint: |
-  yamllint . ansible-lint
+  yamllint .
 
 verifier:
   name: testinfra
