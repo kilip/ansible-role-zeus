@@ -26,7 +26,7 @@ def test_regolith(host):
 
 
 def test_gpg(host):
-	o = host.user("toni").run("gpg --list-keys FC745865826D935D52E089583AF2DB499DD9D2A0")
+	o = host.run("su toni -c \"gpg --list-keys FC745865826D935D52E089583AF2DB499DD9D2A0\"")
 	assert o.succeeded
 
 
@@ -37,4 +37,16 @@ def test_git(host):
 	assert f.is_file
 	assert f.contains("User Name")
 	assert p.is_installed
+
+
+def test_virtualbox(host):
+	v = host.package("virtualbox")
+
+	assert v.is_installed
+
+
+def test_phpbrew(host):
+	cmd = host.run("phpbrew --version")
+
+	assert cmd.succeeded
 

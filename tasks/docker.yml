@@ -56,7 +56,6 @@
     name: "{{ docker_user }}"
     groups: docker
     append: yes
-  changed_when: false
 
 - name: docker ~> install docker-compose
   get_url:

@@ -1,23 +1,22 @@
 - name: phpbrew => install requirements
   package:
-    name: "{{ item }}"
+    name:
+      - build-essential
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - libssl-dev
+      - libxml2-dev
+      - libxslt-dev
+      - libcurl4-gnutls-dev
+      - zlib1g-dev
+      - libpng-dev
+      - libonig-dev
+      - libzip-dev
+      - pkg-config
+      - php-cli
+      - php-bz2
     state: present
-  with_items:
-    - build-essential
-    - libbz2-dev
-    - libreadline-dev
-    - libsqlite3-dev
-    - libssl-dev
-    - libxml2-dev
-    - libxslt-dev
-    - libcurl4-gnutls-dev
-    - zlib1g-dev
-    - libpng-dev
-    - libonig-dev
-    - libzip-dev
-    - pkg-config
-    - php-cli
-    - php-bz2
 
 - name: phpbrew => downloading phpbrew
   get_url:
