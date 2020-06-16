@@ -1,0 +1,41 @@
+- name: phpbrew => install requirements
+  package:
+    name:
+      - build-essential
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - libssl-dev
+      - libxml2-dev
+      - libxslt-dev
+      - libcurl4-gnutls-dev
+      - zlib1g-dev
+      - libpng-dev
+      - libonig-dev
+      - libzip-dev
+      - pkg-config
+      - php-cli
+      - php-bz2
+    state: present
+
+- name: phpbrew => downloading phpbrew
+  get_url:
+    url: https://github.com/phpbrew/phpbrew/releases/latest/download/phpbrew.phar
+    dest: /usr/local/bin/phpbrew
+    mode: u=rwx,g=rwx,o=rx
+
+- name: phpbrew => initialize phpbrew
+  become: yes
+  become_user: "{{ zeus_user }}"
+  command: phpbrew init
+  changed_when: false
+  args:
+    creates: "{{ zeus_user }}/.phpbrew"
+
+- name: phpbrew ~> setup bash
+  become: yes
+  become_user: "{{ zeus_user }}"
+  lineinfile:
+    path: "{{ zeus_home }}/.bashrc"
+    regexp: '^source.*\.phpbrew/bashrc'
+    line: "source {{ zeus_home }}/.phpbrew/bashrc"

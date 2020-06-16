@@ -1,6 +1,0 @@
-- name: install php
-  package:
-    name:
-      - php-cli
-      - php-bz2
-    state: present

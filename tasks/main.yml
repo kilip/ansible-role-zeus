@@ -21,5 +21,11 @@
 - include: docker.yml
   when: docker
 
-- include: php.yml
-  when: php
+- include: nvm.yml
+  when: nvm
+
+- include: phpbrew.yml
+  when: phpbrew
+
+- include: virtualbox.yml
+  when: vbox

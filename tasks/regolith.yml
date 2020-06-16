@@ -6,10 +6,9 @@
 
 - name: regolith ~> start installation
   package:
-    name: "{{ item }}"
+    name:
+      - regolith-desktop
+      - i3xrocks-net-traffic
+      - i3xrocks-cpu-usage
+      - i3xrocks-time
     state: present
-  with_items:
-    - regolith-desktop
-    - i3xrocks-net-traffic
-    - i3xrocks-cpu-usage
-    - i3xrocks-time

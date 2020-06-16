@@ -6,6 +6,7 @@ zeus_util:
   - vim
   - nethogs
   - cockpit
+  - vlc
 
 # Used only for Debian/Ubuntu. Switch 'stable' to 'edge' if needed.
 docker: yes
@@ -36,3 +37,11 @@ gpg_import_key: yes
 git: yes
 git_gpg_key: False
 git_global_config: {}
+
+phpbrew: yes
+ansible: yes
+
+vbox: yes
+
+nvm: yes
+nvm_version: v0.35.3

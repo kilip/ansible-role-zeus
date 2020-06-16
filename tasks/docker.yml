@@ -32,10 +32,12 @@
 
 - name: docker ~> Add Docker apt key (alternative for older systems without SNI).
   shell: >
+    set -o pipefail
     curl -sSL {{ docker_apt_gpg_key }} | sudo apt-key add -
   args:
     warn: false
   when: add_repository_key is failed
+  failed_when: false
 
 - name: docker ~> Add Docker repository.
   apt_repository:
@@ -54,12 +56,11 @@
 - name: docker ~> add {{ docker_user }} to docker group
   user:
     name: "{{ docker_user }}"
-    group: "docker"
+    groups: docker
     append: yes
 
 - name: docker ~> install docker-compose
   get_url:
-    url: https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64"
+    url: https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64
     dest: /usr/local/bin/docker-compose
     mode: "u+x,g+x"
-
