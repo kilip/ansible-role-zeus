@@ -21,10 +21,10 @@
   become_user: "{{ gpg_user }}"
   command: "gpg --list-keys {{ gpg_key_id }}"
   register: out
-  failed_when: out.rc > 100
+  failed_when: false
   changed_when: false
 
-- name: gpg ~> check existing key
+- name: gpg ~> cancel import key when key already exist
   when: out.rc == 0
   set_fact:
     gpg_import_key: no

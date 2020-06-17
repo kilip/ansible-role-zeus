@@ -59,8 +59,16 @@
     groups: docker
     append: yes
 
+- name: docker ~> check docker-compose stat
+  stat:
+    path: /usr/local/bin/docker-compose
+  changed_when: false
+  failed_when: false
+  register: _docker_compose_path
+
 - name: docker ~> install docker-compose
   get_url:
     url: https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64
     dest: /usr/local/bin/docker-compose
     mode: "u+x,g+x"
+  when: false == _docker_compose_path.stat.exists

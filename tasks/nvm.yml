@@ -2,13 +2,13 @@
   stat:
     path: "{{ zeus_home }}/.nvm"
   failed_when: false
-  register: _nvm_stat
+  register: _nvm_dir
   changed_when: false
 
 - name: nvm ~> set install mode
   set_fact:
     nvm_install: no
-  when: _nvm_stat.stat.isdir
+  when: _nvm_dir.stat.exists
 
 - name: nvm ~> download install script
   become: true

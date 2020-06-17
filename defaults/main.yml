@@ -47,7 +47,7 @@ vbox: yes
 
 nvm: yes
 nvm_version: v0.35.3
-nvm_install_sh: "{{ zeus_home }}/nvm-install.sh"
+nvm_install_sh: "/tmp/nvm-install.sh"
 nvm_install: yes
 
 chrome: yes
