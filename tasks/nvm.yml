@@ -1,25 +1,28 @@
 - name: nvm ~> check existing installation
-  become: true
-  become_user: "{{ zeus_user }}"
-  become_flags: '-s /bin/bash'
-  command: "nvm --version"
+  stat:
+    path: "{{ zeus_home }}/.nvm"
   failed_when: false
   register: _nvm_stat
   changed_when: false
 
+- name: nvm ~> set install mode
+  set_fact:
+    nvm_install: no
+  when: _nvm_stat.stat.isdir
+
 - name: nvm ~> download install script
   become: true
   become_user: "{{ zeus_user }}"
-  when: _nvm_stat.rc != 0
+  when: nvm_install
   get_url:
-    url: "http://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh"
-    dest: /tmp/nvm-install.sh
+    url: "https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh"
+    dest: "{{ nvm_install_sh }}"
     mode: u+x,g+x,o+x
 
 - name: nvm ~> run install script
   become: true
   become_user: "{{ zeus_user }}"
-  command: "/tmp/nvm-install.sh"
-  when: _nvm_stat.rc != 0
+  command: "{{ nvm_install_sh }}"
+  when: nvm_install
   args:
     creates: "{{ zeus_home }}/.nvm/nvm.sh"

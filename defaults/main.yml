@@ -39,12 +39,16 @@ git_gpg_key: False
 git_global_config: {}
 
 phpbrew: yes
+phpbrew_install: yes
+
 ansible: yes
 
 vbox: yes
 
 nvm: yes
 nvm_version: v0.35.3
+nvm_install_sh: "{{ zeus_home }}/nvm-install.sh"
+nvm_install: yes
 
 chrome: yes
 chrome_release_channel: 'stable'

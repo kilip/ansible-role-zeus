@@ -1,11 +1,14 @@
 - name: phpbrew ~> check existing installation
-  become: true
-  become_user: "{{ zeus_user }}"
-  become_flags: '-s /bin/bash'
-  command: "phpbrew --version"
-  failed_when: false
+  stat:
+    path: "{{ zeus_home }}/.phpbrew"
+  register: _phpbrew_dir
+
+- name: phpbrew ~> set phpbrew install mode
   changed_when: false
-  register: _phpbrew_stat
+  failed_when: false
+  set_fact:
+    phpbrew_install: no
+  when: _phpbrew_dir.stat.isdir
 
 - name: phpbrew => install requirements
   package:
@@ -26,29 +29,29 @@
       - php-cli
       - php-bz2
     state: present
-  when: _phpbrew_stat.rc == 0
+  when: phpbrew_install
 
 - name: phpbrew => downloading phpbrew
-  when: _phpbrew_stat.rc == 0
   get_url:
     url: https://github.com/phpbrew/phpbrew/releases/latest/download/phpbrew.phar
     dest: /usr/local/bin/phpbrew
     mode: u=rwx,g=rwx,o=rx
+  when: phpbrew_install
 
 - name: phpbrew => initialize phpbrew
-  when: _phpbrew_stat.rc == 0
   become: yes
   become_user: "{{ zeus_user }}"
   command: phpbrew init
   changed_when: false
   args:
-    creates: "{{ zeus_user }}/.phpbrew"
+    creates: "{{ zeus_home }}/.phpbrew"
+  when: phpbrew_install
 
 - name: phpbrew ~> setup bash
-  when: _phpbrew_stat.rc == 0
   become: yes
   become_user: "{{ zeus_user }}"
   lineinfile:
     path: "{{ zeus_home }}/.bashrc"
     regexp: '^source.*\.phpbrew/bashrc'
     line: "source {{ zeus_home }}/.phpbrew/bashrc"
+  when: phpbrew_install
