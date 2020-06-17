@@ -29,3 +29,6 @@
 
 - include: virtualbox.yml
   when: vbox
+
+- include: chrome.yml
+  when: chrome

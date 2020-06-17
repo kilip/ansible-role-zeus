@@ -1,6 +1,7 @@
 - name: nvm ~> check existing installation
   become: true
   become_user: "{{ zeus_user }}"
+  become_flags: '-s /bin/bash'
   command: "nvm --version"
   failed_when: false
   register: _nvm_stat
@@ -11,7 +12,7 @@
   become_user: "{{ zeus_user }}"
   when: _nvm_stat.rc != 0
   get_url:
-    url: "https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh"
+    url: "http://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh"
     dest: /tmp/nvm-install.sh
     mode: u+x,g+x,o+x
 
