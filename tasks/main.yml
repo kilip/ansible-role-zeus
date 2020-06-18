@@ -1,6 +1,9 @@
 ---
 - name: include user task
-  include: user.yml
+  import_tasks: user.yml
+
+- import_tasks: gpg.yml
+  when: gpg
 
 - name: apt ~> update cache
   apt:
@@ -8,28 +11,30 @@
     cache_valid_time: 600
   failed_when: false
 
-- include: util.yml
+- import_tasks: util.yml
 
-- include: gpg.yml
-  when: gpg
-
-- include: git.yml
+- import_tasks: git.yml
   when: git
 
-- include: regolith.yml
+- import_tasks: regolith.yml
   when: regolith
 
-- include: docker.yml
+- import_tasks: rvm.yml
+  become: yes
+  become_user: "{{ zeus_user }}"
+  when: rvm
+
+- import_tasks: docker.yml
   when: docker
 
-- include: nvm.yml
-  when: nvm
-
-- include: phpbrew.yml
-  when: phpbrew
-
-- include: virtualbox.yml
+- import_tasks: virtualbox.yml
   when: vbox
 
-- include: chrome.yml
+- import_tasks: chrome.yml
   when: chrome
+
+- import_tasks: nvm.yml
+  when: nvm
+
+- import_tasks: phpbrew.yml
+  when: phpbrew

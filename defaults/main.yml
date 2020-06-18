@@ -2,6 +2,7 @@
 zeus_user: root
 zeus_group: root
 zeus_home: "/home/{{ zeus_user }}"
+zeus_user_shell: "/usr/bin/bash"
 zeus_util:
   - vim
   - nethogs
@@ -60,3 +61,23 @@ chrome_policies_recommended: []
 chrome_policies_filename: 'policy.json'
 chrome_download_url: 'https://dl.google.com/linux/direct/'
 __chrome_package: '{{ chrome_package_name }}_current_amd64.deb'
+
+rvm: yes
+rvm_version: 'stable'
+rvm_autolib_mode: 3
+rvm_gpg_keys: '409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB'
+rvm_gpg_key_server: 'hkp://pool.sks-keyservers.net'
+rvm_check_for_updates: yes
+
+# The GPG alternative key servers
+rvm_gpg_key_servers:
+  - '{{ rvm_gpg_key_server }}'
+  - hkp://ipv4.pool.sks-keyservers.net
+  - hkp://pgp.mit.edu
+  - hkp://keyserver.pgp.com
+
+rvm_install_path: "{{ zeus_home }}/.rvm"
+rvm_install_flags: '--auto-dotfiles --user-install'
+rvm_latest_installer: 'https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer'
+rvm_temp_download_path: '/tmp'
+rvm_executable: "{{ rvm_install_path }}/bin/rvm"
