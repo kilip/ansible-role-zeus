@@ -24,3 +24,4 @@
       user.signingkey: 3AF2DB499DD9D2A0
       commit.gpgsign: "true"
       core.excludesfile: "{{ zeus_home }}/.gitignore"
+    rvm_check_for_updates: no
