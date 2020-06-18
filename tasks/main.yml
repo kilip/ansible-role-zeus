@@ -5,6 +5,12 @@
 - import_tasks: gpg.yml
   when: gpg
 
+- import_tasks: git.yml
+  when: git
+
+- import_tasks: ohmyzsh.yml
+  when: ohmyzsh
+
 - name: apt ~> update cache
   apt:
     update_cache: true
@@ -12,9 +18,6 @@
   failed_when: false
 
 - import_tasks: util.yml
-
-- import_tasks: git.yml
-  when: git
 
 - import_tasks: regolith.yml
   when: regolith

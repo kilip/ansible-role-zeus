@@ -1,0 +1,31 @@
+---
+- name: ohmyzsh ~> ensure zsh installed
+  package:
+    state: present
+    name: zsh
+
+- name: ohmyzsh ~> check ohmyzsh path existence
+  stat:
+    path: "{{ ohmyzsh_path }}"
+  register: ohmyzsh_current
+
+- name: ohmyzsh ~> check installer
+  stat:
+    path: "{{ ohmyzsh_installer }}"
+  register: ohmyzsh_installer_bin
+  changed_when: false
+
+- name: ohmyzsh ~> download installer script
+  get_url:
+    url: "{{ ohmyzsh_installer_url }}"
+    dest: "{{ ohmyzsh_installer }}"
+    mode: 0755
+  when: not ohmyzsh_installer_bin.stat.exists and not ohmyzsh_current.stat.exists
+
+- name: ohmyzsh ~> running installer script
+  become: true
+  become_user: toni
+  command: "sh -c {{ ohmyzsh_installer }}"
+  when: not ohmyzsh_current.stat.exists
+  args:
+    creates: "{{ ohmyzsh_path }}"
