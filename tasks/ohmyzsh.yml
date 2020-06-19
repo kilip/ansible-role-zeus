@@ -2,7 +2,12 @@
 - name: ohmyzsh ~> ensure zsh installed
   package:
     state: present
-    name: zsh
+    name: "{{ item }}"
+  with_items:
+    - zsh
+    - zsh-autosuggestions
+    - zsh-antigen
+    - zsh-syntax-highlighting
 
 - name: ohmyzsh ~> check ohmyzsh path existence
   stat:
@@ -43,10 +48,15 @@
   changed_when: false
   when: ohmyzsh_change_shell and not ohmyzsh_shell.stdout is search('zsh')
 
-- name: ohmyzsh ~> setup plugins
-  replace:
-    regexp: '^plugins.*'
+- name: ohmyzsh ~> add plugins config
+  lineinfile:
     path: "{{ ohmyzsh_zshrc }}"
-    replace: "plugins=({{ ohmyzsh_plugins | join(' ') }})"
-  changed_when: false
+    regexp: "^plugins.*"
+    line: "plugins=({{ ohmyzsh_plugins | join(' ') }})"
+    state: present
 
+- name: ohmyzsh ~> theme settings
+  lineinfile:
+    path: "{{ ohmyzsh_zshrc }}"
+    regexp: "^ZSH_THEME"
+    line: "ZSH_THEME=\"{{ ohmyzsh_theme }}\""

@@ -1,8 +1,5 @@
 ---
-- name: apt ~> update cache
-  apt:
-    update_cache: true
-    cache_valid_time: 600
+- import_tasks: apt.yml
 
 - import_tasks: util.yml
 

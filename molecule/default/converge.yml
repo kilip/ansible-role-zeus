@@ -1,12 +1,6 @@
 ---
 - name: Converge
   hosts: all
-  pre_tasks:
-    - name: Update apt cache.
-      apt: update_cache=true cache_valid_time=600
-      when: ansible_os_family == 'Debian'
-      changed_when: false
-      failed_when: false
   tasks:
     - name: install zeus
       include_role:
@@ -26,6 +20,7 @@
       commit.gpgsign: "true"
       core.excludesfile: "{{ zeus_home }}/.gitignore"
     rvm_check_for_updates: no
+    ohmyzsh_theme: agnoster
     ohmyzsh_plugins:
       - ansible
       - ubuntu

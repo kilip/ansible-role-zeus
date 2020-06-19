@@ -3,6 +3,7 @@ zeus_user: root
 zeus_group: root
 zeus_home: "/home/{{ zeus_user }}"
 zeus_user_shell: "/usr/bin/zsh"
+zeus_upgrade_first: yes
 zeus_util:
   - vim
   - nethogs
@@ -10,6 +11,11 @@ zeus_util:
   - vlc
   - nfs-common
   - zsh
+
+apt_http_proxy: ""
+apt_https_proxy: "{{ apt_http_proxy }}"
+apt_mirror: "archive.ubuntu.com"
+apt_security_mirror: "security.ubuntu.com"
 
 # Used only for Debian/Ubuntu. Switch 'stable' to 'edge' if needed.
 docker: yes
@@ -92,3 +98,6 @@ ohmyzsh_installer: "{{ ohmyzsh_temp_dir }}/install-ohmyzsh.sh"
 ohmyzsh_change_shell: yes
 ohmyzsh_zsh_bin: /usr/bin/zsh
 ohmyzsh_plugins: []
+ohmyzsh_theme: "robbyrussell"
+ohmyzsh_theme_repo: ""
+ohmyzsh_plugins_repo: []
