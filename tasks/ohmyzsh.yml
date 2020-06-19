@@ -29,3 +29,16 @@
   when: not ohmyzsh_current.stat.exists
   args:
     creates: "{{ ohmyzsh_path }}"
+
+- name: ohmyzsh ~> check current shell
+  become: true
+  become_user: "{{ zeus_user }}"
+  command: "echo $SHELL"
+  register: ohmyzsh_shell
+  when: ohmyzsh_change_shell
+  changed_when: false
+
+- name: ohmyzsh ~> change default shell to zsh
+  command: "chsh -s {{ ohmyzsh_zsh_bin }} {{ zeus_user }}"
+  changed_when: false
+  when: ohmyzsh_change_shell and not ohmyzsh_shell.stdout is search('zsh')

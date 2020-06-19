@@ -1,4 +1,9 @@
 ---
+- name: apt ~> update cache
+  apt:
+    update_cache: true
+    cache_valid_time: 600
+
 - name: include user task
   import_tasks: user.yml
 
@@ -10,12 +15,6 @@
 
 - import_tasks: ohmyzsh.yml
   when: ohmyzsh
-
-- name: apt ~> update cache
-  apt:
-    update_cache: true
-    cache_valid_time: 600
-  failed_when: false
 
 - import_tasks: util.yml
 
