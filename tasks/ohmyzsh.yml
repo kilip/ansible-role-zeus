@@ -42,3 +42,11 @@
   command: "chsh -s {{ ohmyzsh_zsh_bin }} {{ zeus_user }}"
   changed_when: false
   when: ohmyzsh_change_shell and not ohmyzsh_shell.stdout is search('zsh')
+
+- name: ohmyzsh ~> setup plugins
+  replace:
+    regexp: '^plugins.*'
+    path: "{{ ohmyzsh_zshrc }}"
+    replace: "plugins=({{ ohmyzsh_plugins | join(' ') }})"
+  changed_when: false
+

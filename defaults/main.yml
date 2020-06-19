@@ -2,13 +2,14 @@
 zeus_user: root
 zeus_group: root
 zeus_home: "/home/{{ zeus_user }}"
-zeus_user_shell: "/usr/bin/bash"
+zeus_user_shell: "/usr/bin/zsh"
 zeus_util:
   - vim
   - nethogs
   - cockpit
   - vlc
   - nfs-common
+  - zsh
 
 # Used only for Debian/Ubuntu. Switch 'stable' to 'edge' if needed.
 docker: yes
@@ -83,9 +84,11 @@ rvm_temp_download_path: '/tmp'
 rvm_executable: "{{ rvm_install_path }}/bin/rvm"
 
 ohmyzsh: yes
+ohmyzsh_zshrc: "{{ zeus_home }}/.zshrc"
 ohmyzsh_path: "{{ zeus_home }}/.oh-my-zsh"
 ohmyzsh_temp_dir: '/tmp'
 ohmyzsh_installer_url: https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 ohmyzsh_installer: "{{ ohmyzsh_temp_dir }}/install-ohmyzsh.sh"
 ohmyzsh_change_shell: yes
 ohmyzsh_zsh_bin: /usr/bin/zsh
+ohmyzsh_plugins: []

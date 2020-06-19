@@ -4,6 +4,8 @@
     update_cache: true
     cache_valid_time: 600
 
+- import_tasks: util.yml
+
 - name: include user task
   import_tasks: user.yml
 
@@ -16,7 +18,6 @@
 - import_tasks: ohmyzsh.yml
   when: ohmyzsh
 
-- import_tasks: util.yml
 
 - import_tasks: regolith.yml
   when: regolith

@@ -10,4 +10,4 @@
     group: "{{ zeus_group }}"
     create_home: true
     home: "{{ zeus_home }}"
-    shell: "/usr/bin/bash"
+    shell: "{{ zeus_user_shell }}"
