@@ -14,13 +14,15 @@
   package:
     name:
       - build-essential
+      - autoconf
       - libbz2-dev
       - libreadline-dev
       - libsqlite3-dev
       - libssl-dev
       - libxml2-dev
       - libxslt-dev
-      - libcurl4-gnutls-dev
+      #- libcurl4-gnutls-dev
+      - libcurl4-openssl-dev
       - zlib1g-dev
       - libpng-dev
       - libonig-dev
@@ -64,3 +66,11 @@
     regexp: 'source.*\.phpbrew/bashrc'
     line: "[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc"
   when: ohmyzsh
+
+# patch curl
+# sudo ln -s /usr/include/x86_64-linux-gnu/curl /usr/include/curl
+- name: phpbrew ~> create curl lib symlink for older php build
+  file:
+    src: /usr/include/x86_64-linux-gnu/curl
+    dest: /usr/include/curl
+    state: link
