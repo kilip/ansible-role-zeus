@@ -52,6 +52,15 @@
   become_user: "{{ zeus_user }}"
   lineinfile:
     path: "{{ zeus_home }}/.bashrc"
-    regexp: '^source.*\.phpbrew/bashrc'
-    line: "source {{ zeus_home }}/.phpbrew/bashrc"
+    regexp: 'source.*\.phpbrew/bashrc'
+    line: "[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc"
   when: phpbrew_install
+
+- name: phpbrew ~> setup zsh
+  become: yes
+  become_user: "{{ zeus_user }}"
+  lineinfile:
+    path: "{{ ohmyzsh_zshrc }}"
+    regexp: 'source.*\.phpbrew/bashrc'
+    line: "[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc"
+  when: ohmyzsh
