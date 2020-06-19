@@ -31,6 +31,7 @@
   git:
     dest: "{{ ohmyzsh_path }}/custom/plugins/zsh-nvm"
     repo: https://github.com/lukechilds/zsh-nvm
+    version: master
   when: ohmyzsh
 
 - name: nvm ~> setup oh-my-zsh
