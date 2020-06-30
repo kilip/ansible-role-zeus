@@ -38,6 +38,6 @@
   lineinfile:
     path: "{{ ohmyzsh_zshrc }}"
     line: "plugins+=(zsh-nvm)"
-    insertbefore: "source.*oh-my-zsh"
+    insertbefore: source.*oh-my-zsh\.sh
     state: present
   when: ohmyzsh

@@ -51,7 +51,7 @@
 - name: ohmyzsh ~> add plugins config
   lineinfile:
     path: "{{ ohmyzsh_zshrc }}"
-    regexp: "^plugins.*"
+    regexp: "^plugins$"
     line: "plugins=({{ ohmyzsh_plugins | join(' ') }})"
     state: present
 
