@@ -9,15 +9,23 @@
 - import_tasks: gpg.yml
   when: gpg
 
+- import_tasks: phpstorm.yml
+  when: phpstorm
+
 - import_tasks: git.yml
   when: git
 
 - import_tasks: ohmyzsh.yml
   when: ohmyzsh
 
-
 - import_tasks: regolith.yml
   when: regolith
+
+- import_tasks: phpbrew.yml
+  when: phpbrew
+
+- import_tasks: composer.yml
+  when: composer
 
 - import_tasks: rvm.yml
   become: yes
@@ -35,6 +43,3 @@
 
 - import_tasks: nvm.yml
   when: nvm
-
-- import_tasks: phpbrew.yml
-  when: phpbrew

@@ -15,13 +15,22 @@
     name:
       - build-essential
       - autoconf
+      - lcov
+      - systemtap-sdt-dev
+      - libldap-dev
+      - libpq-dev
+      - libmysqlclient-dev
+      - libedit-dev
+      - libreadline-dev
+      - libsodium-dev
+      - libtidy-dev
+      - libgmp-dev
       - libbz2-dev
       - libreadline-dev
       - libsqlite3-dev
       - libssl-dev
       - libxml2-dev
       - libxslt-dev
-      #- libcurl4-gnutls-dev
       - libcurl4-openssl-dev
       - zlib1g-dev
       - libpng-dev
@@ -74,3 +83,15 @@
     src: /usr/include/x86_64-linux-gnu/curl
     dest: /usr/include/curl
     state: link
+
+- name: phpbrew ~> create icu-config bin for older php build
+  template:
+    dest: /usr/bin/icu-config
+    src: icu-config.sh
+    mode: u+x,g+x,o+x
+
+- name: phpbrew ~> default config
+  template:
+    dest: "{{ zeus_home }}/.phpbrew/config.yaml"
+    src: phpbrew.config.yml
+    mode: u+r,g+r,o+r

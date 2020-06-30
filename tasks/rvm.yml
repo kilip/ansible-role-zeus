@@ -22,18 +22,12 @@
   when: not rvm_installer.stat.exists and not rvm_binary.stat.exists
 
 - name: rvm ~> import gpg keys from servers
-  command: 'gpg --batch --keyserver {{ item }} --recv-keys {{ rvm_gpg_keys }}'
+  command: 'gpg2 --recv-keys {{ rvm_gpg_keys }}'
   check_mode: false
   changed_when: false
   ignore_errors: true
-  with_items: "{{ rvm_gpg_key_servers }}"
   register: _rvm_gpg_import
   when: not ansible_check_mode and (_rvm_gpg_import is not defined or _rvm_gpg_import.rc != 0)
-
-- name: rvm ~> was GPG import from keyservers succesfull?
-  set_fact: gpg_imported_from={{ item.item }}
-  when: "'rc' in item and item.rc == 0"
-  with_items: "{{ _rvm_gpg_import.results }}"
 
 - name: rvm ~> Install rvm
   command: >

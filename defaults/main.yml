@@ -11,6 +11,8 @@ zeus_util:
   - vlc
   - nfs-common
   - zsh
+  - transmission
+  - gnupg2
 
 apt_http_proxy: ""
 apt_https_proxy: "{{ apt_http_proxy }}"
@@ -93,7 +95,7 @@ ohmyzsh: yes
 ohmyzsh_zshrc: "{{ zeus_home }}/.zshrc"
 ohmyzsh_path: "{{ zeus_home }}/.oh-my-zsh"
 ohmyzsh_temp_dir: '/tmp'
-ohmyzsh_installer_url: https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+ohmyzsh_installer_url: "https://github.com/ohmyzsh/ohmyzsh/raw/master/tools/install.sh"
 ohmyzsh_installer: "{{ ohmyzsh_temp_dir }}/install-ohmyzsh.sh"
 ohmyzsh_change_shell: yes
 ohmyzsh_zsh_bin: /usr/bin/zsh
@@ -101,3 +103,36 @@ ohmyzsh_plugins: []
 ohmyzsh_theme: "robbyrussell"
 ohmyzsh_theme_repo: ""
 ohmyzsh_plugins_repo: []
+
+phpstorm: yes
+phpstorm_version: "2020.1.2" #"2018.3.6"
+phpstorm_install_basepath: "/opt/jetbrains"
+phpstorm_install_prefix: "phpstorm"
+phpstorm_install_path: "{{ phpstorm_install_basepath }}/{{ phpstorm_install_prefix }}-{{ phpstorm_version }}"
+phpstorm_commandline_launcher: 'pstorm'
+phpstorm_cleanup_releases: []
+# Donwload URLs
+phpstorm_package: "PhpStorm-{{ phpstorm_version }}.tar.gz"
+phpstorm_download_url: "https://download.jetbrains.com/webide/{{ phpstorm_package }}"
+phpstorm_checksum_url: "{{ phpstorm_download_url }}.sha256"
+
+### Composer Section
+composer: yes
+composer_path: /usr/local/bin/composer
+composer_keep_updated: false
+composer_version: ''
+# The directory where global packages will be installed.
+composer_home_path: '~/.composer'
+composer_home_owner: "{{ zeus_user }}"
+composer_home_group: "{{ zeus_group }}"
+# A list of packages to install globally. See commented examples below for
+# usage; the 'release' is optional, and defaults to '@stable'.
+composer_global_packages: []
+# - { name: phpunit/phpunit, release: "4.7.x" }
+# - { name: phpunit/phpunit, release: "@stable" }
+composer_add_to_path: true
+# Add a project vendor/bin directory to the PATH
+composer_add_project_to_path: false
+# composer_project_path: /path/to/project/vendor/bin
+# GitHub OAuth token (used to help overcome API rate limits).
+composer_github_oauth_token: ''

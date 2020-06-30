@@ -70,5 +70,5 @@
   get_url:
     url: https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64
     dest: /usr/local/bin/docker-compose
-    mode: "u+x,g+x"
+    mode: "u+x,g+x,o+x"
   when: false == _docker_compose_path.stat.exists
