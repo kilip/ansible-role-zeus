@@ -104,7 +104,7 @@ ohmyzsh_theme: "robbyrussell"
 ohmyzsh_theme_repo: ""
 ohmyzsh_plugins_repo: []
 
-phpstorm: yes
+phpstorm: no
 phpstorm_version: "2020.1.2" #"2018.3.6"
 phpstorm_install_basepath: "/opt/jetbrains"
 phpstorm_install_prefix: "phpstorm"
@@ -136,3 +136,7 @@ composer_add_project_to_path: false
 # composer_project_path: /path/to/project/vendor/bin
 # GitHub OAuth token (used to help overcome API rate limits).
 composer_github_oauth_token: ''
+
+
+### Laravel Section
+laravel: yes
