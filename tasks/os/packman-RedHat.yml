@@ -11,5 +11,15 @@
     state: present
 
 - name: packman ~> enable power tools
-  dnf:
-    enable_plugin: PowerTools
+  ini_file:
+    path: /etc/yum.repos.d/CentOS-PowerTools.repo
+    section: PowerTools
+    option: enabled
+    value: "1"
+  when:
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version >= "8"
+
+- name: update yum cache
+  yum:
+    update_cache: yes

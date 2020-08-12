@@ -23,7 +23,7 @@
       - ansible
       - ubuntu
       - git
-    phpstorm: no
+    phpstorm: yes
     regolith: yes
     phpbrew: yes
     ansible: yes

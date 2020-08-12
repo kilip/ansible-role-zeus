@@ -109,8 +109,6 @@ ohmyzsh_theme: "robbyrussell"
 ohmyzsh_theme_repo: ""
 ohmyzsh_plugins_repo: []
 
-
-
 phpstorm: no
 phpstorm_version: "2020.1.2" #"2018.3.6"
 phpstorm_install_basepath: "/opt/jetbrains"
