@@ -1,13 +1,13 @@
 ---
+- name: "ohmyzsh ~> include vars for {{ ansible_os_family }}"
+  include_vars: "ohmyzsh-{{ ansible_os_family|lower }}.yml"
+
 - name: ohmyzsh ~> ensure zsh installed
   package:
     state: present
     name: "{{ item }}"
-  with_items:
-    - zsh
-    - zsh-autosuggestions
-    - zsh-antigen
-    - zsh-syntax-highlighting
+  with_items: "{{ ohmyzsh_packages }}"
+
 
 - name: ohmyzsh ~> check ohmyzsh path existence
   stat:

@@ -1,3 +1,6 @@
+- name: "phpbrew ~> configure packages for {{ ansible_os_family }}"
+  include_vars: "phpbrew-{{ ansible_os_family|lower }}.yml"
+
 - name: phpbrew ~> check existing installation
   stat:
     path: "{{ zeus_home }}/.phpbrew"
@@ -12,46 +15,20 @@
 
 - name: phpbrew ~> install requirements
   package:
-    name:
-      - build-essential
-      - autoconf
-      - lcov
-      - systemtap-sdt-dev
-      - libldap-dev
-      - libpq-dev
-      - libmysqlclient-dev
-      - libedit-dev
-      - libreadline-dev
-      - libsodium-dev
-      - libtidy-dev
-      - libgmp-dev
-      - libbz2-dev
-      - libreadline-dev
-      - libsqlite3-dev
-      - libssl-dev
-      - libxml2-dev
-      - libxslt-dev
-      - libcurl4-openssl-dev
-      - zlib1g-dev
-      - libpng-dev
-      - libonig-dev
-      - libzip-dev
-      - pkg-config
-      - php-cli
-      - php-bz2
+    name: "{{ phpbrew_packages }}"
     state: present
 
 - name: phpbrew ~> downloading phpbrew
   get_url:
     url: https://github.com/phpbrew/phpbrew/releases/latest/download/phpbrew.phar
-    dest: /usr/local/bin/phpbrew
+    dest: "{{ phpbrew_dest }}"
     mode: u=rwx,g=rwx,o=rx
   when: phpbrew_install
 
 - name: phpbrew ~> initialize phpbrew
   become: yes
   become_user: "{{ zeus_user }}"
-  command: phpbrew init
+  command: "{{ phpbrew_dest }} init"
   changed_when: false
   args:
     creates: "{{ zeus_home }}/.phpbrew"
@@ -82,6 +59,7 @@
     src: /usr/include/x86_64-linux-gnu/curl
     dest: /usr/include/curl
     state: link
+  when: ansible_os_family == 'Debian'
 
 - name: phpbrew ~> create icu-config bin for older php build
   template:

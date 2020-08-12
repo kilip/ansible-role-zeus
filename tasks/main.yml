@@ -1,5 +1,11 @@
 ---
-- import_tasks: apt.yml
+- name: "configure package manager for RedHat"
+  import_tasks: "./os/packman-RedHat.yml"
+  when: ansible_os_family == 'RedHat'
+
+- name: "configure package manager for Debian"
+  import_tasks: "./os/packman-Debian.yml"
+  when: ansible_os_family == 'Debian'
 
 - import_tasks: util.yml
 
@@ -19,7 +25,7 @@
   when: ohmyzsh
 
 - import_tasks: regolith.yml
-  when: regolith
+  when: regolith and ansible_os_family=='Debian'
 
 - import_tasks: phpbrew.yml
   when: phpbrew
@@ -36,10 +42,10 @@
   when: docker
 
 - import_tasks: virtualbox.yml
-  when: vbox
+  when: vbox and ansible_os_family=='Debian'
 
 - import_tasks: chrome.yml
-  when: chrome
+  when: chrome and ansible_os_family=='Debian'
 
 - import_tasks: nvm.yml
   when: nvm

@@ -9,8 +9,6 @@
     zeus_user: toni
     zeus_group: toni
     zeus_user_shell: /usr/bin/zsh
-    regolith: yes
-    gpg: yes
     gpg_key_id: "FC745865826D935D52E089583AF2DB499DD9D2A0"
     gpg_private_key: "tests/fixtures/gpg.key"
     git_global_config:
@@ -26,3 +24,11 @@
       - ubuntu
       - git
     phpstorm: no
+    regolith: yes
+    phpbrew: yes
+    ansible: yes
+    vbox: yes
+    nvm: yes
+    chrome: yes
+    rvm: yes
+    composer: yes

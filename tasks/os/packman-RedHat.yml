@@ -1,0 +1,15 @@
+---
+- name: packman ~> Enable EPEL Repository on CentOS 8
+  dnf:
+    name: epel-release
+    state: latest
+
+- name: packman ~> install dnf plugins
+  package:
+    name:
+      - dnf-plugins-core
+    state: present
+
+- name: packman ~> enable power tools
+  dnf:
+    enable_plugin: PowerTools
