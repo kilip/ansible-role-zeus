@@ -30,7 +30,7 @@
 - name: ohmyzsh ~> running installer script
   become: true
   become_user: toni
-  command: "sh -c {{ ohmyzsh_installer }}"
+  command: "sh -c {{ ohmyzsh_installer }} --unattended"
   when: not ohmyzsh_current.stat.exists
   args:
     creates: "{{ ohmyzsh_path }}"

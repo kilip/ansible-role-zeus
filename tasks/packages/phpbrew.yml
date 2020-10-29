@@ -50,7 +50,7 @@
     path: "{{ ohmyzsh_zshrc }}"
     regexp: 'source.*\.phpbrew/bashrc'
     line: "[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc"
-  when: ohmyzsh
+  when: zeus_ohmyzsh
 
 # patch curl
 # sudo ln -s /usr/include/x86_64-linux-gnu/curl /usr/include/curl
